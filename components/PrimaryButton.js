@@ -7,6 +7,7 @@ const PrimaryButton = ({ children }) => {
   return (
     <View style={styles.buttonOuterContainer}>
       <Pressable
+        // style onPress's css use a ? b : c
         style={({ pressed }) =>
           pressed
             ? [styles.buttonInnerContainer, styles.pressed]
