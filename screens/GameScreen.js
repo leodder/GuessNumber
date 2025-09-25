@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
 // hook
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 
 let minBoundary = 1;
@@ -19,7 +19,7 @@ const generateRandomBetween = (min, max, exclude) => {
   }
 };
 
-const GameScreen = ({ userNumber }) => {
+const GameScreen = ({ userNumber, onGameOver }) => {
   // let minBoundary = 1;
   // let maxBoundary = 100;
   // const generateRandomBetween = (min, max, exclude) => {
@@ -31,11 +31,18 @@ const GameScreen = ({ userNumber }) => {
   //   }
   // };
   const initialGuess = generateRandomBetween(
-    minBoundary,
-    maxBoundary,
+    // minBoundary,
+    1,
+    // maxBoundary,
+    100,
     userNumber
   );
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  useEffect(()=>{
+    if(currentGuess === userNumber){
+      onGameOver();
+    }
+  },[currentGuess, userNumber, onGameOver])
   const nextGuessHnadler = (direction) => {
     // direction => 'lower', 'greater'
     if (
@@ -69,10 +76,10 @@ const GameScreen = ({ userNumber }) => {
         <Text>Higher or Lower</Text>
         <View>
           <PrimaryButton onPress={nextGuessHnadler.bind(this, "lower")}>
-            +
+            -
           </PrimaryButton>
           <PrimaryButton onPress={nextGuessHnadler.bind(this, "greater")}>
-            -
+            +
           </PrimaryButton>
         </View>
       </View>

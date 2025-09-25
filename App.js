@@ -9,20 +9,32 @@ import { useState } from "react";
 // screen
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
+import GameOverScreen from "./screens/GameOverScreen";
 // global colors
 import Colors from "./constants/colors";
 
 export default function App() {
   const [userNumer, setUserNumber] = useState();
+  const [gameIsOver, setGameIsOver] = useState(true);
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
+    setGameIsOver(false);
+  };
+  const gameOverHandler = () => {
+    setGameIsOver(true);
   };
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
   if (userNumer) {
-    screen = <GameScreen userNumber={userNumer} />;
+    screen = <GameScreen userNumber={userNumer} onGameOver={gameOverHandler} />;
+  }
+  if (gameIsOver && userNumer) {
+    screen = <GameOverScreen />;
   }
   return (
-    <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.rootScreen}>
+    <LinearGradient
+      colors={[Colors.primary700, Colors.accent500]}
+      style={styles.rootScreen}
+    >
       <ImageBackground
         source={require("./assets/images/dice.jpg")}
         resizeMode="cover"
