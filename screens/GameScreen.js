@@ -9,6 +9,8 @@ import InstructionText from "../components/ui/InstructionText";
 // hook
 import { useState, useEffect } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
+// icon
+import { Ionicons } from "@expo/vector-icons";
 
 let minBoundary = 1;
 let maxBoundary = 100;
@@ -78,17 +80,21 @@ const GameScreen = ({ userNumber, onGameOver }) => {
       <NumberContainer>{currentGuess}</NumberContainer>
       {/* <View> */}
       <Card>
-      {/* custom component can use props to cascading style */}
-        <InstructionText style={styles.instructionText}>Higher or Lower</InstructionText>
+        {/* custom component can use props to cascading style */}
+        <InstructionText style={styles.instructionText}>
+          Higher or Lower
+        </InstructionText>
         <View style={styles.buttonGroup}>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHnadler.bind(this, "lower")}>
-              -
+              {/* - */}
+              <Ionicons name="remove" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHnadler.bind(this, "greater")}>
-              +
+              {/* + */}
+              <Ionicons name="add" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>
@@ -118,5 +124,5 @@ const styles = StyleSheet.create({
   },
   instructionText: {
     marginBottom: 12,
-  }
+  },
 });
