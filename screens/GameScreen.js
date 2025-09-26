@@ -1,9 +1,11 @@
 // import React from 'react'
-import { View, Text, StyleSheet,Alert } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 // component
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
 // hook
 import { useState, useEffect } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -38,18 +40,20 @@ const GameScreen = ({ userNumber, onGameOver }) => {
     userNumber
   );
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
-  useEffect(()=>{
-    if(currentGuess === userNumber){
+  useEffect(() => {
+    if (currentGuess === userNumber) {
       onGameOver();
     }
-  },[currentGuess, userNumber, onGameOver])
+  }, [currentGuess, userNumber, onGameOver]);
   const nextGuessHnadler = (direction) => {
     // direction => 'lower', 'greater'
     if (
       (direction === "lower" && currentGuess < userNumber) ||
       (direction === "greater" && currentGuess > userNumber)
     ) {
-      Alert.alert("Dont't lie!","You know this is wrong...",[{text: 'Sorry!',style: 'cancel'}]);
+      Alert.alert("Dont't lie!", "You know this is wrong...", [
+        { text: "Sorry!", style: "cancel" },
+      ]);
       return;
     }
     if (direction === "lower") {
@@ -72,17 +76,24 @@ const GameScreen = ({ userNumber, onGameOver }) => {
       <Title>Opponent's Guess</Title>
       {/* Guess */}
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text>Higher or Lower</Text>
-        <View>
-          <PrimaryButton onPress={nextGuessHnadler.bind(this, "lower")}>
-            -
-          </PrimaryButton>
-          <PrimaryButton onPress={nextGuessHnadler.bind(this, "greater")}>
-            +
-          </PrimaryButton>
+      {/* <View> */}
+      <Card>
+      {/* custom component can use props to cascading style */}
+        <InstructionText style={styles.instructionText}>Higher or Lower</InstructionText>
+        <View style={styles.buttonGroup}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGuessHnadler.bind(this, "lower")}>
+              -
+            </PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGuessHnadler.bind(this, "greater")}>
+              +
+            </PrimaryButton>
+          </View>
         </View>
-      </View>
+      </Card>
+      {/* </View> */}
       {/* + - */}
       {/* <View>LOG Rounds</View> */}
     </View>
@@ -98,4 +109,14 @@ const styles = StyleSheet.create({
     // marginHorizontal: 24,
     padding: 16,
   },
+  buttonGroup: {
+    // display: "flex",
+    flexDirection: "row",
+  },
+  buttonContainer: {
+    flex: 1,
+  },
+  instructionText: {
+    marginBottom: 12,
+  }
 });
