@@ -1,11 +1,12 @@
 // import React from 'react'
-import { View, StyleSheet, Alert, Text } from "react-native";
+import { View, StyleSheet, Alert, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 // component
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
 import Card from "../components/ui/Card";
 import InstructionText from "../components/ui/InstructionText";
+import GuessLogItem from "../components/game/GuessLogItem";
 // hook
 import { useState, useEffect } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -81,6 +82,7 @@ const GameScreen = ({ userNumber, onGameOver }) => {
       ...previousGuessRound,
     ]);
   };
+  const guessRoundListLength = guessRound.length;
 
   return (
     <View style={styles.screen}>
@@ -111,10 +113,18 @@ const GameScreen = ({ userNumber, onGameOver }) => {
       {/* </View> */}
       {/* + - */}
       {/* <View>LOG Rounds</View> */}
-      <View>
-        {guessRound.map((guessRound) => (
+      <View style={styles.listContainer}>
+        {/* {guessRound.map((guessRound) => (
           <Text key={guessRound}>{guessRound}</Text>
-        ))}
+        ))} */}
+        <FlatList
+          data={guessRound}
+          renderItem={(itemData) => 
+          // <Text>{itemData.item}</Text>
+          <GuessLogItem roundNumber={guessRoundListLength - itemData.index} guess={itemData.item} />
+          }
+          keyExtractor={(item) => item}
+        />
       </View>
     </View>
   );
@@ -138,5 +148,9 @@ const styles = StyleSheet.create({
   },
   instructionText: {
     marginBottom: 12,
+  },
+  listContainer: {
+    padding: 16,
+    flex: 1,
   },
 });
