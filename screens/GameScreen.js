@@ -1,5 +1,5 @@
 // import React from 'react'
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 // component
 import Title from "../components/ui/Title";
@@ -42,15 +42,16 @@ const GameScreen = ({ userNumber, onGameOver }) => {
     userNumber
   );
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [guessRound, setGuessRound] = useState([initialGuess]);
   useEffect(() => {
     if (currentGuess === userNumber) {
       onGameOver();
     }
   }, [currentGuess, userNumber, onGameOver]);
-  useEffect(()=>{
+  useEffect(() => {
     minBoundary = 1;
     maxBoundary = 100;
-  },[])
+  }, []);
   const nextGuessHnadler = (direction) => {
     // direction => 'lower', 'greater'
     if (
@@ -75,6 +76,10 @@ const GameScreen = ({ userNumber, onGameOver }) => {
       currentGuess
     );
     setCurrentGuess(newRandomNumber);
+    setGuessRound((previousGuessRound) => [
+      newRandomNumber,
+      ...previousGuessRound,
+    ]);
   };
 
   return (
@@ -106,6 +111,11 @@ const GameScreen = ({ userNumber, onGameOver }) => {
       {/* </View> */}
       {/* + - */}
       {/* <View>LOG Rounds</View> */}
+      <View>
+        {guessRound.map((guessRound) => (
+          <Text key={guessRound}>{guessRound}</Text>
+        ))}
+      </View>
     </View>
   );
 };
