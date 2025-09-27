@@ -47,6 +47,10 @@ const GameScreen = ({ userNumber, onGameOver }) => {
       onGameOver();
     }
   }, [currentGuess, userNumber, onGameOver]);
+  useEffect(()=>{
+    minBoundary = 1;
+    maxBoundary = 100;
+  },[])
   const nextGuessHnadler = (direction) => {
     // direction => 'lower', 'greater'
     if (
