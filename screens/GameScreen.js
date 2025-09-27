@@ -66,10 +66,8 @@ const GameScreen = ({ userNumber, onGameOver }) => {
     }
     if (direction === "lower") {
       maxBoundary = currentGuess;
-      // const newRandomNumber = generateRandomBetween(minBoundary, maxBoundary, currentGuess)
     } else {
       minBoundary = currentGuess + 1;
-      // const newRandomNumber = generateRandomBetween(minBoundary, maxBoundary, currentGuess)
     }
     const newRandomNumber = generateRandomBetween(
       minBoundary,
@@ -104,15 +102,11 @@ const GameScreen = ({ userNumber, onGameOver }) => {
           </View>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHnadler.bind(this, "greater")}>
-              {/* + */}
               <Ionicons name="add" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>
       </Card>
-      {/* </View> */}
-      {/* + - */}
-      {/* <View>LOG Rounds</View> */}
       <View style={styles.listContainer}>
         {/* {guessRound.map((guessRound) => (
           <Text key={guessRound}>{guessRound}</Text>
@@ -120,7 +114,6 @@ const GameScreen = ({ userNumber, onGameOver }) => {
         <FlatList
           data={guessRound}
           renderItem={(itemData) => 
-          // <Text>{itemData.item}</Text>
           <GuessLogItem roundNumber={guessRoundListLength - itemData.index} guess={itemData.item} />
           }
           keyExtractor={(item, index) => item.toString() + '-' + index}
@@ -136,11 +129,9 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     marginTop: 50,
-    // marginHorizontal: 24,
     padding: 16,
   },
   buttonGroup: {
-    // display: "flex",
     flexDirection: "row",
   },
   buttonContainer: {

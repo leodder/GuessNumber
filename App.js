@@ -49,7 +49,6 @@ export default function App() {
   };
   const startNewGameHandler = () => {
     setUserNumber(null);
-    // setGameIsOver(true);
     setGuessRound(0);
   };
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
@@ -79,10 +78,7 @@ export default function App() {
         style={styles.rootScreen}
         imageStyle={styles.backgroundImage}
       >
-        {/* <StartGameScreen /> */}
-        {/* <SafeAreaView style={styles.rootScreen}> */}
         {screen}
-        {/* </SafeAreaView> */}
       </ImageBackground>
     </LinearGradient>
   );
@@ -90,7 +86,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   rootScreen: {
-    // backgroundColor: "#ddb52f",
     flex: 1,
   },
   backgroundImage: {

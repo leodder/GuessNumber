@@ -28,10 +28,8 @@ export default GameOverScreen;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    // marginTop: 60,
     justifyContent: "center",
     alignItems: "center",
-    // marginHorizontal: 24,
     padding: 24,
   },
   imageContainer: {

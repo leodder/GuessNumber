@@ -1,17 +1,14 @@
 import { StyleSheet, View } from "react-native";
 import Colors from "../../constants/colors";
 
-const Card = ({children}) => {
-  return <View style={styles.card}>
-    {children}
-  </View>;
+const Card = ({ children }) => {
+  return <View style={styles.card}>{children}</View>;
 };
 
 export default Card;
 
 const styles = StyleSheet.create({
   card: {
-    // flexDirection: 'column',
     justifyContent: "center",
     alignItems: "center",
     marginTop: 36,
@@ -25,4 +22,4 @@ const styles = StyleSheet.create({
     shadowRadius: 6, // control how much the shadow expands
     shadowOpacity: 0.25, // control how transparent a shadow is
   },
-})
+});

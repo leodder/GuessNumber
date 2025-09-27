@@ -16,11 +16,7 @@ const StartGameScreen = ({ onPickNumber }) => {
     setEnterdNumber("");
   };
   const confirmInputHandler = () => {
-    // console.log(enterdNumber);
-    // console.log(typeof enterdNumber)
     const chosenNumber = parseInt(enterdNumber);
-    // console.log(chosenNumber);
-    // console.log(typeof chosenNumber)
     if (isNaN(chosenNumber) || chosenNumber < 0 || chosenNumber > 99) {
       // alert("Number is not valid, plz enter a valid number🤔")
       Alert.alert("Invalid numer!", "number has to be between 0 and 99 🤔", [
@@ -84,7 +80,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   buttonGroup: {
-    // display: "flex",
     flexDirection: "row",
   },
   buttonContainer: {
