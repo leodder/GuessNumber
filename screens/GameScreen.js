@@ -46,7 +46,7 @@ const GameScreen = ({ userNumber, onGameOver }) => {
   const [guessRound, setGuessRound] = useState([initialGuess]);
   useEffect(() => {
     if (currentGuess === userNumber) {
-      onGameOver();
+      onGameOver(guessRound.length);
     }
   }, [currentGuess, userNumber, onGameOver]);
   useEffect(() => {
@@ -123,7 +123,7 @@ const GameScreen = ({ userNumber, onGameOver }) => {
           // <Text>{itemData.item}</Text>
           <GuessLogItem roundNumber={guessRoundListLength - itemData.index} guess={itemData.item} />
           }
-          keyExtractor={(item) => item}
+          keyExtractor={(item, index) => item.toString() + '-' + index}
         />
       </View>
     </View>
