@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     padding: 16,
+    alignItems: "center",
   },
   instructionText: {
     color: Colors.accent500,

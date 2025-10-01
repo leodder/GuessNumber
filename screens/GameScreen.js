@@ -113,10 +113,13 @@ const GameScreen = ({ userNumber, onGameOver }) => {
         ))} */}
         <FlatList
           data={guessRound}
-          renderItem={(itemData) => 
-          <GuessLogItem roundNumber={guessRoundListLength - itemData.index} guess={itemData.item} />
-          }
-          keyExtractor={(item, index) => item.toString() + '-' + index}
+          renderItem={(itemData) => (
+            <GuessLogItem
+              roundNumber={guessRoundListLength - itemData.index}
+              guess={itemData.item}
+            />
+          )}
+          keyExtractor={(item, index) => item.toString() + "-" + index}
         />
       </View>
     </View>
@@ -130,6 +133,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 50,
     padding: 16,
+    alignItems: "center",
   },
   buttonGroup: {
     flexDirection: "row",
