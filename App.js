@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 //
 import { LinearGradient } from "expo-linear-gradient";
 // components
@@ -67,20 +68,23 @@ export default function App() {
     );
   }
   return (
-    <LinearGradient
-      colors={[Colors.primary700, Colors.accent500]}
-      style={styles.rootScreen}
-      onLayout={onLayoutRootView} // 讓 fontsLoaded 之後能觸發 hideAsync
-    >
-      <ImageBackground
-        source={require("./assets/images/dice.jpg")}
-        resizeMode="cover"
+    <>
+    <StatusBar style="light" />
+      <LinearGradient
+        colors={[Colors.primary700, Colors.accent500]}
         style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}
+        onLayout={onLayoutRootView} // 讓 fontsLoaded 之後能觸發 hideAsync
       >
-        {screen}
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={require("./assets/images/dice.jpg")}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImage}
+        >
+          {screen}
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
